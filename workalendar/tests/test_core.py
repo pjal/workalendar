@@ -2,9 +2,8 @@ from datetime import date
 from datetime import datetime
 from workalendar.tests import GenericCalendarTest
 from workalendar.core import MON, TUE, THU, FRI, WED
-from workalendar.core import Calendar, LunarCalendar, WesternCalendar
+from workalendar.core import Calendar, WesternCalendar
 from workalendar.core import IslamicMixin, JalaliMixin, ChristianMixin
-from workalendar.core import EphemMixin
 
 
 class CalendarTest(GenericCalendarTest):
@@ -95,16 +94,6 @@ class CalendarTest(GenericCalendarTest):
         self.assertEquals(
             Calendar.get_first_weekday_after(date(2015, 4, 14), 1),
             date(2015, 4, 14)
-        )
-
-
-class LunarCalendarTest(GenericCalendarTest):
-    cal_class = LunarCalendar
-
-    def test_new_year(self):
-        self.assertEquals(
-            self.cal.lunar(2014, 1, 1),
-            date(2014, 1, 31)
         )
 
 
@@ -260,49 +249,6 @@ class JalaliMixinTest(GenericCalendarTest):
         days = self.cal.converted(2013)
         self.assertEquals(len(days), 365)
 
-
-class EphemMixinTest(GenericCalendarTest):
-    cal_class = EphemMixin
-
-    def test_calculate_some_equinoxes(self):
-        self.assertEquals(
-            self.cal.calculate_equinoxes(2010),
-            (date(2010, 3, 20), date(2010, 9, 23))
-        )
-        self.assertEquals(
-            self.cal.calculate_equinoxes(2010, 'Asia/Taipei'),
-            (date(2010, 3, 21), date(2010, 9, 23))
-        )
-        self.assertEquals(
-            self.cal.calculate_equinoxes(2013),
-            (date(2013, 3, 20), date(2013, 9, 22))
-        )
-        self.assertEquals(
-            self.cal.calculate_equinoxes(2014),
-            (date(2014, 3, 20), date(2014, 9, 23))
-        )
-        self.assertEquals(
-            self.cal.calculate_equinoxes(2020),
-            (date(2020, 3, 20), date(2020, 9, 22))
-        )
-
-    def test_qingming_festivals(self):
-        self.assertEquals(
-            self.cal.solar_term(2001, 15),
-            date(2001, 4, 4)
-        )
-        self.assertEquals(
-            self.cal.solar_term(2001, 15, 'Asia/Taipei'),
-            date(2001, 4, 5)
-        )
-        self.assertEquals(
-            self.cal.solar_term(2011, 15),
-            date(2011, 4, 5)
-        )
-        self.assertEquals(
-            self.cal.solar_term(2014, 15),
-            date(2014, 4, 4)
-        )
 
 
 class MockChristianCalendar(WesternCalendar, ChristianMixin):

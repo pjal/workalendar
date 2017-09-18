@@ -19,18 +19,12 @@ NAME = 'workalendar'
 DESCRIPTION = 'Worldwide holidays and working days helper and toolkit.'
 REQUIREMENTS = [
     'python-dateutil',
-    'lunardate',
     'pytz',
     'pyCalverter',
     'setuptools>=1.0',
 ]
 version = '2.4.0.dev0'
 __VERSION__ = version
-
-if PY2:
-    REQUIREMENTS.append('pyephem')
-else:
-    REQUIREMENTS.append('ephem')
 
 params = dict(
     name=NAME,

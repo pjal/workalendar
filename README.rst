@@ -122,13 +122,7 @@ America
 Asia
 ----
 
-* Hong Kong
-* Japan
-* Malaysia
 * Qatar
-* Singapore
-* South Korea
-* Taiwan
 
 Oceania
 -------
